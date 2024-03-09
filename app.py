@@ -41,15 +41,16 @@ with col1:
 
 point = []
 
-if lat_input:
-    point.append(lat_input)
-if not lat_input:
-  st.warning("Please fill out required fields.")
-
-if lon_input:
-    point.append(lon_input)
-if not lat_input:
-  st.warning("Please fill out required fields.")
+with col1:
+    if lat_input:
+        point.append(lat_input)
+    if not lat_input:
+      st.warning("Please fill out required fields.")
+    
+    if lon_input:
+        point.append(lon_input)
+    if not lat_input:
+      st.warning("Please fill out required fields.")
 
 #m = folium.Map(location = point, zoom_start = 16)
 #folium.Marker(point, popup = "Location of Interest").add_to(m)
@@ -59,10 +60,10 @@ if not lat_input:
 
 with col1:
     area_input = st.number_input('Insert area in hectares')
-if area_input:
-    area = area_input
-if not area_input:
-  st.warning("Please fill out required fields.")
+    if area_input:
+        area = area_input
+    if not area_input:
+      st.warning("Please fill out required fields.")
     
 with col1:
     start_input = st.date_input("Start Date", datetime.date(2022, 7, 31))
@@ -349,11 +350,16 @@ tree_c_p = tree_num_p * 0.0638 * math.pow(tree_dbh_p, 2.5435) * conv_c * kg_to_t
 
 tree_tot = tree_c_g + tree_c_a + tree_c_p
 
+# agroforestry dataframe
+tree = {'Tree Species': ['G. robusta', 'A. indica', 'P. americana'], 'Carbon (ton)': [tree_c_g, tree_c_a, tree_c_p]}
+tree_df = pd.DataFrame(data = tree)
+
 with col2:
     st.subheader('Agroforestry', divider='grey')
     st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
     st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
     st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
+    st.barchart(tree_df)
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 ########################################### Biochar
 
