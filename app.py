@@ -12,7 +12,7 @@
 import streamlit as st
 #from streamlit_folium import st_folium
 
-import folium
+#import folium
 import requests
 import json
 import pandas as pd
