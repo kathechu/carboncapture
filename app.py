@@ -458,6 +458,7 @@ carbon_tot = {'col1': ['Baseline', 'Carbon Input'], 'col2': [base_c, final_c]}
 carbon_df = pd.DataFrame(data = carbon_tot)
 carbon_df = carbon_df.set_index('col1')
 
+st.divider()
 st.header('Final Carbon Values' , divider='grey')
 
 st.bar_chart(carbon_df)
