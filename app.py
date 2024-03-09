@@ -12,7 +12,6 @@
 #conda install -c conda-forge folium
 #python3 -m pip install folium
 import streamlit as st
-#from streamlit_folium import st_folium
 
 st.set_page_config(
     page_title="Carbon Capture Cube Calculator",
@@ -20,7 +19,9 @@ st.set_page_config(
     layout="wide"
 )
 
-#import folium
+import folium
+from streamlit_folium import st_folium
+
 import requests
 import json
 import pandas as pd
@@ -52,11 +53,11 @@ with col1:
     if not lat_input:
       st.warning("Please fill out required fields.")
 
-#m = folium.Map(location = point, zoom_start = 16)
-#folium.Marker(point, popup = "Location of Interest").add_to(m)
+m = folium.Map(location = point, zoom_start = 16)
+folium.Marker(point, popup = "Location of Interest").add_to(m)
 
-#st_data = st_folium(m, width = 725)
-#st.caption("Location of Interest")
+st_data = st_folium(m, width = 725)
+st.caption("Location of Interest")
 
 with col1:
     area_input = st.number_input('Insert area in hectares')
@@ -239,7 +240,7 @@ aoi_df = pd.DataFrame(data = aoi)
 
 with col2:
     st.header('Output', divider='grey')
-    st.map(aoi_df, latitude = 'lon', longitude = 'lon')
+    #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
     st.line_chart(df, x="dekad", y="value")
     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
