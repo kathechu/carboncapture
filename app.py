@@ -353,7 +353,7 @@ tree_tot = tree_c_g + tree_c_a + tree_c_p
 # agroforestry dataframe
 tree = {'Tree Species': ['G. robusta', 'A. indica', 'P. americana'], 'Carbon (ton)': [tree_c_g, tree_c_a, tree_c_p]}
 tree_df = pd.DataFrame(data = tree)
-tree_df.set_index('Tree Species')
+tree_df = tree_df.set_index('Tree Species')
 
 with col2:
     st.subheader('Agroforestry', divider='grey')
