@@ -25,13 +25,13 @@ st.title('Carbon Capture Cube Calculator')
 
 st.markdown('This web app calculates the baseline carbon stock of a user selected location and the carbon inputs of user inputted agroforestry and biochar parameters.')
 
-st.header('Insert Variables', divider='grey')
+col1, col2 = st.columns(2)
 
-st.markdown('Variables of interest for the baseline carbon stock assessment is the coordinates of a farm and its area.')
-
-
-lat_input = st.text_input('Insert a latitude')
-lon_input = st.text_input('Insert a longitude')
+with col1:
+    st.header('Insert Variables', divider='grey')
+    st.markdown('Variables of interest for the baseline carbon stock assessment is the coordinates of a farm and its area.')
+    lat_input = st.text_input('Insert a latitude')
+    lon_input = st.text_input('Insert a longitude')
 
 point = []
 
@@ -51,115 +51,121 @@ if not lat_input:
 #st_data = st_folium(m, width = 725)
 #st.caption("Location of Interest")
 
-
-area_input = st.number_input('Insert area in hectares')
+with col1:
+    area_input = st.number_input('Insert area in hectares')
 if area_input:
     area = area_input
 if not area_input:
   st.warning("Please fill out required fields.")
-
-start_input = st.date_input("Start Date", datetime.date(2022, 7, 31))
+    
+with col1:
+    start_input = st.date_input("Start Date", datetime.date(2022, 7, 31))
 if start_input:
     start_date = start_input.strftime('%Y-%m-%d')
 if not start_input:
   st.warning("Please fill out required fields.")
-
-end_input = st.date_input("End Date", datetime.date(2023, 7, 31))
+    
+with col1:
+    end_input = st.date_input("End Date", datetime.date(2023, 7, 31))
 if end_input:
     end_date = end_input.strftime('%Y-%m-%d')
 if not end_input:
   st.warning("Please fill out required fields.")
 
-
-st.markdown('Variables of interest for agroforestry carbon inputs are the species, number, and DBH of tree.')
+with col1:
+    st.markdown('Variables of interest for agroforestry carbon inputs are the species, number, and DBH of tree.')
 
 # G.robusta
-
-tree_num_g_input = st.number_input('Insert number of G. robusta trees')
+with col1:
+    tree_num_g_input = st.number_input('Insert number of G. robusta trees')
 if tree_num_g_input:
     tree_num_g = tree_num_g_input
 if not tree_num_g_input:
   tree_num_g = 0
 
-tree_dbh_g_input = st.number_input('Insert DBH of G. robusta trees')
+with col1:
+    tree_dbh_g_input = st.number_input('Insert DBH of G. robusta trees')
 if tree_dbh_g_input:
     tree_dbh_g = tree_dbh_g_input
 if not tree_dbh_g_input:
   tree_dbh_g = 0
 
 # A.indica
-
-tree_num_a_input = st.number_input('Insert number of A. indica trees')
+with col1:
+    tree_num_a_input = st.number_input('Insert number of A. indica trees')
 if tree_num_a_input:
     tree_num_a = tree_num_a_input
 if not tree_num_a_input:
   tree_num_a = 0
 
-tree_dbh_a_input = st.number_input('Insert DBH of A. indica trees')
+with col1:
+    tree_dbh_a_input = st.number_input('Insert DBH of A. indica trees')
 if tree_dbh_a_input:
     tree_dbh_a = tree_dbh_a_input
 if not tree_dbh_a_input:
   tree_dbh_a = 1 #set equal to 1 to avoid math domain error
 
 # P.americana
-
-tree_num_p_input = st.number_input('Insert number of P. americana trees')
+with col1:
+    tree_num_p_input = st.number_input('Insert number of P. americana trees')
 if tree_num_p_input:
     tree_num_p = tree_num_a_input
 if not tree_num_a_input:
   tree_num_p = 0
 
-tree_dbh_p_input = st.number_input('Insert DBH of P. americana trees')
+with col1:
+    tree_dbh_p_input = st.number_input('Insert DBH of P. americana trees')
 if tree_dbh_p_input:
     tree_dbh_p = tree_dbh_p_input
 if not tree_dbh_p_input:
   tree_dbh_p = 0
 
-st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.')
+with col1:
+    st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.')
 
 # maize straw
-
-m_straw_r_input = st.number_input('Insert kg of maize straw')
+with col1:
+    m_straw_r_input = st.number_input('Insert kg of maize straw')
 if m_straw_r_input:
     m_straw_r = m_straw_r_input
 if not m_straw_r_input:
   m_straw_r = 0
 
 # maize cob
-
-m_cob_r_input = st.number_input('Insert kg of maize cob')
+with col1:
+    m_cob_r_input = st.number_input('Insert kg of maize cob')
 if m_cob_r_input:
     m_cob_r = m_cob_r_input
 if not m_cob_r_input:
   m_cob_r = 0
 
 # rice husk
-
-r_husk_r_input = st.number_input('Insert kg of rice husk')
+with col1:
+    r_husk_r_input = st.number_input('Insert kg of rice husk')
 if r_husk_r_input:
     r_husk_r = r_husk_r_input
 if not r_husk_r_input:
   r_husk_r = 0
 
 # rice straw
-
-r_straw_r_input = st.number_input('Insert kg of rice straw')
+with col1:
+    r_straw_r_input = st.number_input('Insert kg of rice straw')
 if r_straw_r_input:
     r_straw_r = r_straw_r_input
 if not r_straw_r_input:
   r_straw_r = 0
 
 # sorghum
-
-s_straw_r_input = st.number_input('Insert kg of sorghum straw')
+with col1:
+    s_straw_r_input = st.number_input('Insert kg of sorghum straw')
 if s_straw_r_input:
     s_straw_r = s_straw_r_input
 if not s_straw_r_input:
   s_straw_r = 0
 
 # groundnut
-
-g_shell_r_input = st.number_input('Insert kg of groundnut shell')
+with col1:
+    g_shell_r_input = st.number_input('Insert kg of groundnut shell')
 if g_shell_r_input:
     g_shell_r = g_shell_r_input
 if not g_shell_r_input:
@@ -221,20 +227,22 @@ resp=resp_query.json()
 results=resp['response']
 df=pd.DataFrame(results['items'],columns=results['header'])
 
-st.header('Output', divider='grey')
-
-st.subheader('Aboveground Carbon - WaPOR', divider='grey')
-
-st.line_chart(df, x="dekad", y="value")
-st.caption("Dekadal NPP Point Series (gC/m^2/day)")
+with col2:
+    st.header('Output', divider='grey')
+    st.subheader('Aboveground Carbon - WaPOR', divider='grey')
+    st.line_chart(df, x="dekad", y="value")
+    st.caption("Dekadal NPP Point Series (gC/m^2/day)")
 
 mean_npp = df['value'].mean()
-st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2.")
+with col2:
+    st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2.")
 
 convert = 10000/907185 #from g to ton, m^2 to ha
 
 abvg_carbon = mean_npp * (10000/907185) * area
-st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
+
+with col2:
+    st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
 
 ###################################### iSDA
 
@@ -242,7 +250,8 @@ st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
 lat = point[0]
 lon = point[1]
 
-st.subheader('Soil Carbon Carbon - iSDA', divider='grey')
+with col2:
+    st.subheader('Soil Carbon Carbon - iSDA', divider='grey')
 
 # Properties for 0-20 cm
 ## Bulk Density
@@ -250,23 +259,24 @@ iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqIT
 iSDA_resp = requests.get(iSDAurl).json()
 bd_20 = iSDA_resp["property"]["bulk_density"][0]["value"]["value"]
 bd_unit = iSDA_resp["property"]["bulk_density"][0]["value"]["unit"]
-st.markdown(f"**Bulk density:** {bd_20} {bd_unit} for 0-20 cm.")
 
 ## Organic Carbon
 iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4&lat={lat}&lon={lon}&property=carbon_organic&depth=0-20"
 iSDA_resp = requests.get(iSDAurl).json()
 oc_20 = iSDA_resp["property"]["carbon_organic"][0]["value"]["value"]
 oc_unit = iSDA_resp["property"]["carbon_organic"][0]["value"]["unit"]
-st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
 
 ## Stone Content
 iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4&lat={lat}&lon={lon}&property=stone_content&depth=0-20"
 iSDA_resp = requests.get(iSDAurl).json()
 sc_20 = iSDA_resp["property"]["stone_content"][0]["value"]["value"]
 sc_unit = iSDA_resp["property"]["stone_content"][0]["value"]["unit"]
-st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
 
-st.divider()
+with col2:
+    st.markdown(f"**Bulk density:** {bd_20} {bd_unit} for 0-20 cm.")
+    st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
+    st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
+    st.divider()
 
 # Properties for 20-50 cm
 
@@ -275,40 +285,44 @@ iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqIT
 iSDA_resp = requests.get(iSDAurl).json()
 bd_50 = iSDA_resp["property"]["bulk_density"][0]["value"]["value"]
 bd_unit = iSDA_resp["property"]["bulk_density"][0]["value"]["unit"]
-st.markdown(f"**Bulk density:** {bd_50} {bd_unit} for 20-50 cm.")
 
 ## Organic Carbon
 iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4&lat={lat}&lon={lon}&property=carbon_organic&depth=20-50"
 iSDA_resp = requests.get(iSDAurl).json()
 oc_50 = iSDA_resp["property"]["carbon_organic"][0]["value"]["value"]
 oc_unit = iSDA_resp["property"]["carbon_organic"][0]["value"]["unit"]
-st.markdown(f"**Organic carbon:** {oc_50} {oc_unit} for 20-50 cm.")
 
 ## Stone Content
 iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4&lat={lat}&lon={lon}&property=stone_content&depth=20-50"
 iSDA_resp = requests.get(iSDAurl).json()
 sc_50 = iSDA_resp["property"]["stone_content"][0]["value"]["value"]
 sc_unit = iSDA_resp["property"]["stone_content"][0]["value"]["unit"]
-st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
 
-st.divider()
+with col2:
+    st.markdown(f"**Bulk density:** {bd_50} {bd_unit} for 20-50 cm.")
+    st.markdown(f"**Organic carbon:** {oc_50} {oc_unit} for 20-50 cm.")
+    st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
+    st.divider()
 
 # SOC for 0-20 cm
 soc_20 = 0.1 * oc_20 * bd_20 * 20 * (1- (sc_20/100)) * area
-st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
 
 # SOC for 20-50 cm
 soc_50 = 0.1 * oc_50 * bd_50 * 30 * (1- (sc_50/100)) * area
-st.markdown(f"**Soil organic carbon stock:** {round(soc_50, 3)} tons for 20-50 cm.")
 
 # Total SOC
 soc_tot = soc_20 + soc_50
-st.markdown(f"**Total soil organic carbon stock:** {round(soc_tot, 3)} tons.")
 
-st.subheader('Final Baseline Carbon Stock', divider='grey')
 
 base_c = abvg_carbon + soc_tot
-st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons at location: {point[0]} degrees latitude {point[1]} degrees longitude.")
+
+with col2:
+    st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
+    st.markdown(f"**Soil organic carbon stock:** {round(soc_50, 3)} tons for 20-50 cm.")
+    st.markdown(f"**Total soil organic carbon stock:** {round(soc_tot, 3)} tons.")
+    st.subheader('Final Baseline Carbon Stock', divider='grey')
+    st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
+
 
 ########################################### Agroforestry
 
