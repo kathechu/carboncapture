@@ -423,15 +423,12 @@ carbon_input_tot = tree_tot + biochar_tot
 
 with col2:
     st.subheader('Biochar', divider='grey')
-    col3, col4 = st.columns(2)
-    with col 3:
-        st.markdown(f"{m_straw_r} kg of maize straw results in {round(m_straw_c, 3)} tons of carbon.")
-        st.markdown(f"{m_cob_r} kg of maize cobs results in {round(m_cob_c, 3)} tons of carbon.")
-        st.markdown(f"{r_husk_r} kg of rice husks results in {round(r_husk_c, 3)} tons of carbon.")
-    with col 4:
-        st.markdown(f"{r_straw_r} kg of rice straw results in {round(r_straw_c, 3)} tons of carbon.")
-        st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
-        st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
+    st.markdown(f"{m_straw_r} kg of maize straw results in {round(m_straw_c, 3)} tons of carbon.")
+    st.markdown(f"{m_cob_r} kg of maize cobs results in {round(m_cob_c, 3)} tons of carbon.")
+    st.markdown(f"{r_husk_r} kg of rice husks results in {round(r_husk_c, 3)} tons of carbon.")
+    st.markdown(f"{r_straw_r} kg of rice straw results in {round(r_straw_c, 3)} tons of carbon.")
+    st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
+    st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
     st.bar_chart(biochar_df)
     st.caption("Biochar Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
