@@ -459,7 +459,7 @@ carbon_df = pd.DataFrame(data = carbon_tot)
 
 st.header('Final Carbon Values' , divider='grey')
 
-st.bar_chart(carbon_df, colors = ["#fd0", "#f0f"])
+st.bar_chart(carbon_df)
 st.caption("Baseline Carbon vs. Final Carbon Total")
 
 st.markdown(f"Final carbon total is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
