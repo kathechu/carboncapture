@@ -360,7 +360,7 @@ with col2:
     st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
     st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
     st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
-    st.bar_chart(tree_df)
+    st.bar_chart(tree_df, x = 'Tree Species', y = 'Carbon (ton)')
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 ########################################### Biochar
 
@@ -417,6 +417,10 @@ g_shell_c = g_shell_r * g_shell_a * g_shell_b * g_shell_fc * kg_to_ton
 
 biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
 
+biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell'],
+           'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
+biochar_df = pd.DataFrame(data = biochar)
+biochar_df = biochar_df.set_index('Feedstock')
 
 with col2:
     st.subheader('Biochar', divider='grey')
@@ -427,6 +431,7 @@ with col2:
     st.divider()
     st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
     st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
+    st.bar_chart(biochar_df, x = 'Feedstock', y = 'Carbon (ton)')
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
 
 # Final inputs
