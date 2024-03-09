@@ -444,7 +444,7 @@ with col2:
 
 final_c = base_c + carbon_input_tot
 
-perc_inc = 100 * ((base_c - carbon_input_tot)/base_c)
+perc_inc = 100 * ((final_c - base_c)/base_c)
 
 
 carbon_tot = {'col1': ['Baseline', 'Carbon Input'], 'col2': [base_c, final_c]}
