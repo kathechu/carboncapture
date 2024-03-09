@@ -421,10 +421,12 @@ g_shell_c = g_shell_r * g_shell_a * g_shell_b * g_shell_fc * kg_to_ton
 
 biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
 
-biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell'],
-           'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
+biochar = {'Maize Straw': [m_straw_c], 'Maize Cob': [m_cob_c], 'Rice Husk': [r_husk_c], 'Rice Straw':[r_straw_c] 'Sorghum Straw': [s_straw_c], 'Groundnut Shell':[g_shell_c]}
+
+#biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell'],
+           #'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
 biochar_df = pd.DataFrame(data = biochar)
-biochar_df = biochar_df.set_index('Feedstock')
+#biochar_df = biochar_df.set_index('Feedstock')
 
 carbon_input_tot = tree_tot + biochar_tot
 
@@ -449,10 +451,11 @@ final_c = base_c + carbon_input_tot
 
 perc_inc = 100 * ((final_c - base_c)/base_c)
 
+carbon_tot = {'Baseline':[base_c], 'Carbon Input':[final_c]}
 
-carbon_tot = {'col1': ['Baseline', 'Carbon Input'], 'col2': [base_c, final_c]}
+#carbon_tot = {'col1': ['Baseline', 'Carbon Input'], 'col2': [base_c, final_c]}
 carbon_df = pd.DataFrame(data = carbon_tot)
-carbon_df = carbon_df.set_index('col1')
+#carbon_df = carbon_df.set_index('col1')
 
 st.header('Final Carbon Values' , divider='grey')
 
