@@ -95,7 +95,7 @@ with col1:
 if tree_dbh_g_input:
     tree_dbh_g = tree_dbh_g_input
 if not tree_dbh_g_input:
-  tree_dbh_g = 0
+  tree_dbh_g = 1
 
 # A.indica
 with col1:
@@ -125,7 +125,7 @@ with col1:
 if tree_dbh_p_input:
     tree_dbh_p = tree_dbh_p_input
 if not tree_dbh_p_input:
-  tree_dbh_p = 0
+  tree_dbh_p = 1
 
 with col1:
     st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.')
