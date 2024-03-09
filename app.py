@@ -26,7 +26,7 @@ import datetime
 st.title('Carbon Capture Cube Calculator')
 
 st.markdown('This web app calculates the baseline carbon stock of a user selected location and the carbon inputs of user inputted agroforestry and biochar parameters.')
-st.markdown('For calculating the baseline carbon stock, spatial data from [WaPOR](https://wapor.apps.fao.org/home/WAPOR_2/1) and [iSDAsoil](https://www.isda-africa.com/isdasoil/) will be used.')
+st.markdown('For calculating the baseline carbon stock, spatial data from [WaPOR 2.1](https://wapor.apps.fao.org/home/WAPOR_2/1) and [iSDAsoil](https://www.isda-africa.com/isdasoil/) will be used.')
 
 st.markdown('Code for using the WaPOR API referenced the [GitHub repository](https://github.com/trngbich/tutorial_WaPOR_API/tree/master) created by Bich Tran in 2023.')
 
@@ -35,7 +35,7 @@ col1, col2 = st.columns([1,3])
 with col1:
     st.header('Insert Variables', divider='grey')
     st.markdown('Variables of interest for the baseline carbon stock assessment is the coordinates of a farm and its area.')
-    st.markdown('**NOTE:** WaPOR and iSDAsoil does not have data for all coordinates. For the calculator to work, choose within a latitude range of 10.5 to -18.5 and a longitude range of -16.2 to 50.2.')
+    st.markdown('**NOTE:** WaPOR 2.1 and iSDAsoil does not have data for all coordinates. For the calculator to work, choose within a latitude range of 10.5 to -18.5 and a longitude range of -16.2 to 50.2.')
     lat_input = st.text_input('Insert a latitude')
     lon_input = st.text_input('Insert a longitude')
 
