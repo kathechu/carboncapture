@@ -360,7 +360,7 @@ with col2:
     st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
     st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
     st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
-    st.bar_chart(tree_df, x = 'Tree Species', y = 'Carbon (ton)')
+    st.bar_chart(tree_df)
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 ########################################### Biochar
 
@@ -431,7 +431,7 @@ with col2:
     st.divider()
     st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
     st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
-    st.bar_chart(biochar_df, x = 'Feedstock', y = 'Carbon (ton)')
+    st.bar_chart(biochar_df)
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
 
 # Final inputs
