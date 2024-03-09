@@ -236,6 +236,7 @@ df=pd.DataFrame(results['items'],columns=results['header'])
 
 with col2:
     st.header('Output', divider='grey')
+    st.map(latitude = point[0], longitude = point[1])
     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
     st.line_chart(df, x="dekad", y="value")
     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
@@ -283,7 +284,6 @@ with col2:
     st.markdown(f"**Bulk density:** {bd_20} {bd_unit} for 0-20 cm.")
     st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
     st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
-    st.divider()
 
 # Properties for 20-50 cm
 
