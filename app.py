@@ -459,10 +459,13 @@ carbon_df = pd.DataFrame(data = carbon_tot)
 carbon_df = carbon_df.set_index('col1')
 
 st.divider()
-st.header('Final Carbon Values' , divider='grey')
+st.header('Summary' , divider='grey')
 
 st.bar_chart(carbon_df)
 st.caption("Baseline Carbon vs. Final Carbon Total")
 
-st.markdown(f"Final carbon total is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
+st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
+st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
+
+st.markdown(f"**Final carbon total** is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
 
