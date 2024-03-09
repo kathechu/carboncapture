@@ -6,11 +6,6 @@
 ###########################################
 
 # import libraries
-
-#pip install streamlit-folium
-#conda install -c conda-forge streamlit-folium
-#conda install -c conda-forge folium
-#python3 -m pip install folium
 import streamlit as st
 
 st.set_page_config(
@@ -19,8 +14,8 @@ st.set_page_config(
     layout="wide"
 )
 
-import folium
-from streamlit_folium import st_folium
+# import folium
+# from streamlit_folium import st_folium
 
 import requests
 import json
@@ -53,11 +48,11 @@ with col1:
     if not lat_input:
       st.warning("Please fill out required fields.")
 
-m = folium.Map(location = point, zoom_start = 16)
-folium.Marker(point, popup = "Location of Interest").add_to(m)
+# m = folium.Map(location = point, zoom_start = 16)
+# folium.Marker(point, popup = "Location of Interest").add_to(m)
 
-st_data = st_folium(m, width = 725)
-st.caption("Location of Interest")
+# st_data = st_folium(m, width = 725)
+# st.caption("Location of Interest")
 
 with col1:
     area_input = st.number_input('Insert area in hectares')
