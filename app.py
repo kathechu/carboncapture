@@ -25,7 +25,7 @@ st.title('Carbon Capture Cube Calculator')
 
 st.markdown('This web app calculates the baseline carbon stock of a user selected location and the carbon inputs of user inputted agroforestry and biochar parameters.')
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([1,3])
 
 with col1:
     st.header('Insert Variables', divider='grey')
