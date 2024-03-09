@@ -263,7 +263,7 @@ lat = point[0]
 lon = point[1]
 
 with col2:
-    st.subheader('Soil Carbon Carbon - iSDA', divider='grey')
+    st.subheader('Soil Organic Carbon - iSDA', divider='grey')
 
 # Properties for 0-20 cm
 ## Bulk Density
