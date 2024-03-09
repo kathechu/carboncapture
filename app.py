@@ -420,6 +420,8 @@ biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 
 biochar_df = pd.DataFrame(data = biochar)
 biochar_df = biochar_df.set_index('Feedstock')
 
+carbon_input_tot = tree_tot + biochar_tot
+
 with col2:
     st.subheader('Biochar', divider='grey')
     st.markdown(f"{m_straw_r} kg of maize straw results in {round(m_straw_c, 3)} tons of carbon.")
@@ -436,7 +438,6 @@ with col2:
 
 # Final inputs
 
-carbon_input_tot = tree_tot + biochar_tot
 
 final_c = base_c + carbon_input_tot
 
