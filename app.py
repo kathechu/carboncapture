@@ -332,32 +332,30 @@ with col2:
 
 ########################################### Agroforestry
 
-st.subheader('Agroforestry', divider='grey')
-
 # conversion values
 conv_c = 0.48
 kg_to_ton = 1/907.18
 
 # g. robusta
 tree_c_g = tree_num_g * 1.811 * math.pow(tree_dbh_g, 1.658) * conv_c * kg_to_ton
-st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
 
 # a. indica
 tree_c_a = tree_num_a * math.exp(-0.4568 + 1.6733 * math.log(tree_dbh_a)) * conv_c * kg_to_ton
-st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
 
 # p. americana
 tree_c_p = tree_num_p * 0.0638 * math.pow(tree_dbh_p, 2.5435) * conv_c * kg_to_ton
-st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
 
 # agroforestry totals
 
 tree_tot = tree_c_g + tree_c_a + tree_c_p
-st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 
+with col2:
+    st.subheader('Agroforestry', divider='grey')
+    st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
+    st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 ########################################### Biochar
-
-st.subheader('Biochar', divider='grey')
 
 # maize straw
 
@@ -366,7 +364,6 @@ m_straw_b = 0.3254 # biochar
 m_straw_fc = 0.5993 # fixed carbon
 
 m_straw_c = m_straw_r * m_straw_a * m_straw_b * m_straw_fc * kg_to_ton
-st.markdown(f"{m_straw_r} kg of maize straw results in {round(m_straw_c, 3)} tons of carbon.")
 
 # maize cob
 
@@ -375,7 +372,6 @@ m_cob_b = 0.2605 # biochar
 m_cob_fc = 0.8575 # fixed carbon
 
 m_cob_c = m_cob_r * m_cob_a * m_cob_b * m_cob_fc * kg_to_ton
-st.markdown(f"{m_cob_r} kg of maize cobs results in {round(m_cob_c, 3)} tons of carbon.")
 
 # rice husks
 
@@ -386,7 +382,6 @@ r_husk_b = 0.4445 # biochar
 r_husk_fc = 0.4696 # fixed carbon
 
 r_husk_c = r_husk_r * r_husk_a * r_husk_b * r_husk_fc * kg_to_ton
-st.markdown(f"{r_husk_r} kg of rice husks results in {round(r_husk_c, 3)} tons of carbon.")
 
 # rice straw
 
@@ -395,9 +390,7 @@ r_straw_b = 0.3513 # biochar
 r_straw_fc = 0.4091 # fixed carbon
 
 r_straw_c = r_straw_r * r_straw_a * r_straw_b * r_straw_fc * kg_to_ton
-st.markdown(f"{r_straw_r} kg of rice straw results in {round(r_straw_c, 3)} tons of carbon.")
 
-st.divider()
 
 # sorghum
 
@@ -406,7 +399,6 @@ s_straw_b = 0.3690 # biochar
 s_straw_fc = 0.5100 # fixed carbon
 
 s_straw_c = s_straw_r * s_straw_a * s_straw_b * s_straw_fc * kg_to_ton
-st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
 
 # groundnut
 
@@ -415,23 +407,32 @@ g_shell_b = 0.3200 # biochar
 g_shell_fc = 0.7290 # fixed carbon
 
 g_shell_c = g_shell_r * g_shell_a * g_shell_b * g_shell_fc * kg_to_ton
-st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
 
 biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
 
-st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
+
+with col2:
+    st.subheader('Biochar', divider='grey')
+    st.markdown(f"{m_straw_r} kg of maize straw results in {round(m_straw_c, 3)} tons of carbon.")
+    st.markdown(f"{m_cob_r} kg of maize cobs results in {round(m_cob_c, 3)} tons of carbon.")
+    st.markdown(f"{r_husk_r} kg of rice husks results in {round(r_husk_c, 3)} tons of carbon.")
+    st.markdown(f"{r_straw_r} kg of rice straw results in {round(r_straw_c, 3)} tons of carbon.")
+    st.divider()
+    st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
+    st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
+    st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
 
 # Final inputs
 
-st.subheader('Final Carbon Inputs', divider = 'grey')
-
 carbon_input_tot = tree_tot + biochar_tot
-st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
-
-st.header('Final Carbon Values' , divider='grey')
 
 final_c = base_c + carbon_input_tot
 
 perc_inc = 100 * ((base_c - carbon_input_tot)/base_c)
 
-st.markdown(f"Final carbon total is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
+with col2:
+    st.subheader('Final Carbon Inputs', divider = 'grey')
+    st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
+    st.header('Final Carbon Values' , divider='grey')
+    st.markdown(f"Final carbon total is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
+
