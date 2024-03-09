@@ -10,7 +10,7 @@
 pip install streamlit-folium
 
 import streamlit as st
-from streamlit_folium import st_folium
+#from streamlit_folium import st_folium
 
 import folium
 import requests
@@ -43,11 +43,11 @@ if lon_input:
 if not lat_input:
   st.warning("Please fill out required fields.")
 
-m = folium.Map(location = point, zoom_start = 16)
-folium.Marker(point, popup = "Location of Interest").add_to(m)
+#m = folium.Map(location = point, zoom_start = 16)
+#folium.Marker(point, popup = "Location of Interest").add_to(m)
 
-st_data = st_folium(m, width = 725)
-st.caption("Location of Interest")
+#st_data = st_folium(m, width = 725)
+#st.caption("Location of Interest")
 
 
 area_input = st.number_input('Insert area in hectares')
