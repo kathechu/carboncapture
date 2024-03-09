@@ -238,15 +238,15 @@ with col2:
     st.header('Output', divider='grey')
     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
     st.line_chart(df, x="dekad", y="value")
-    st.caption("Dekadal NPP Point Series (gC/m^2/day)")
+    st.caption("Dekadal NPP Time Series (gC/m^2/day)")
 
 mean_npp = df['value'].mean()
 with col2:
-    st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2.")
+    st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
 
 convert = 10000/907185 #from g to ton, m^2 to ha
 
-abvg_carbon = mean_npp * (10000/907185) * area
+abvg_carbon = mean_npp * (10000/907185) * area *365
 
 with col2:
     st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
@@ -320,7 +320,6 @@ soc_50 = 0.1 * oc_50 * bd_50 * 30 * (1- (sc_50/100)) * area
 # Total SOC
 soc_tot = soc_20 + soc_50
 
-
 base_c = abvg_carbon + soc_tot
 
 with col2:
@@ -361,6 +360,7 @@ with col2:
     st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
     st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
     st.bar_chart(tree_df)
+    st.caption("Agroforestry Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 ########################################### Biochar
 
@@ -381,8 +381,6 @@ m_cob_fc = 0.8575 # fixed carbon
 m_cob_c = m_cob_r * m_cob_a * m_cob_b * m_cob_fc * kg_to_ton
 
 # rice husks
-
-st.divider()
 
 r_husk_a = 0.88 # availability
 r_husk_b = 0.4445 # biochar
@@ -428,11 +426,13 @@ with col2:
     st.markdown(f"{m_cob_r} kg of maize cobs results in {round(m_cob_c, 3)} tons of carbon.")
     st.markdown(f"{r_husk_r} kg of rice husks results in {round(r_husk_c, 3)} tons of carbon.")
     st.markdown(f"{r_straw_r} kg of rice straw results in {round(r_straw_c, 3)} tons of carbon.")
-    st.divider()
     st.markdown(f"{s_straw_r} kg of sorghum straw results in {round(s_straw_c, 3)} tons of carbon.")
     st.markdown(f"{g_shell_r} kg of groundnut shells results in {round(g_shell_c, 3)} tons of carbon.")
     st.bar_chart(biochar_df)
+    st.caption("Biochar Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
+    st.subheader('Final Carbon Inputs', divider = 'grey')
+    st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
 
 # Final inputs
 
@@ -442,9 +442,13 @@ final_c = base_c + carbon_input_tot
 
 perc_inc = 100 * ((base_c - carbon_input_tot)/base_c)
 
-with col2:
-    st.subheader('Final Carbon Inputs', divider = 'grey')
-    st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
-    st.header('Final Carbon Values' , divider='grey')
-    st.markdown(f"Final carbon total is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
+
+carbon_tot = {'col1': ['Baseline', 'Carbon Input'], 'col2': [base_c, carbon_input_tot]}
+carbon_df = pd.DataFrame(data = carbon_tot)
+carbon_df = carbon_df.set_index('col1')
+
+st.header('Final Carbon Values' , divider='grey')
+
+st.bar_chart(carbon_df)
+st.markdown(f"Final carbon total is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
 
