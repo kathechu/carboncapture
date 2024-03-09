@@ -29,6 +29,7 @@ st.markdown('This web app calculates the baseline carbon stock of a user selecte
 st.markdown('For calculating the baseline carbon stock, spatial data from [WaPOR 2.1](https://wapor.apps.fao.org/home/WAPOR_2/1) and [iSDAsoil](https://www.isda-africa.com/isdasoil/) will be used.')
 
 st.markdown('Code for using the WaPOR API referenced the [GitHub repository](https://github.com/trngbich/tutorial_WaPOR_API/tree/master) created by Bich Tran in 2023.')
+st.markdown('The [GitHub repository](https://github.com/kathechu/carboncapture) of this app is provided as reference.')
 
 col1, col2 = st.columns([1,3])
 
