@@ -117,7 +117,7 @@ with col1:
     tree_num_p_input = st.number_input('Insert number of P. americana trees')
 if tree_num_p_input:
     tree_num_p = tree_num_a_input
-if not tree_num_a_input:
+if not tree_num_p_input:
   tree_num_p = 0
 
 with col1:
