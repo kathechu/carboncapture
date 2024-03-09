@@ -424,7 +424,7 @@ biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
 #biochar = {'Maize Straw': [m_straw_c], 'Maize Cob': [m_cob_c], 'Rice Husk': [r_husk_c], 'Rice Straw':[r_straw_c], 'Sorghum Straw': [s_straw_c], 'Groundnut Shell':[g_shell_c]}
 
 biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell'],
-           #'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
+           'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
 biochar_df = pd.DataFrame(data = biochar)
 biochar_df = biochar_df.set_index('Feedstock')
 
