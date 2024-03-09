@@ -2,6 +2,8 @@
 
 A simple carbon stock calculator for locations within Africa. Carbon inputs are based on agroforestry and biochar practices. Calculations are limited to a few species.
 
+App is run through Streamlit Community Cloud.
+
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
