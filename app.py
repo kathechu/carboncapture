@@ -8,11 +8,12 @@
 # import libraries
 
 #pip install streamlit-folium
-
+conda install -c conda-forge streamlit-folium
+conda install -c conda-forge folium
 import streamlit as st
-#from streamlit_folium import st_folium
+from streamlit_folium import st_folium
 
-#import folium
+import folium
 import requests
 import json
 import pandas as pd
