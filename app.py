@@ -235,11 +235,11 @@ results=resp['response']
 df=pd.DataFrame(results['items'],columns=results['header'])
 
 aoi = {'lat': [point[0]], 'lon':[point[1]]}
-aoi_df = pd.DataFrame(aoi)
+aoi_df = pd.DataFrame(data = aoi)
 
 with col2:
     st.header('Output', divider='grey')
-    st.map(aoi_df)
+    st.map(aoi_df, latitude = 'lon', longitude = 'lon')
     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
     st.line_chart(df, x="dekad", y="value")
     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
