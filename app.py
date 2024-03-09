@@ -353,9 +353,12 @@ tree_c_p = tree_num_p * 0.0638 * math.pow(tree_dbh_p, 2.5435) * conv_c * kg_to_t
 tree_tot = tree_c_g + tree_c_a + tree_c_p
 
 # agroforestry dataframe
-tree = {'Tree Species': ['G. robusta', 'A. indica', 'P. americana'], 'Carbon (ton)': [tree_c_g, tree_c_a, tree_c_p]}
+
+tree = {'G. robusta': [tree_c_g], 'A. indica': [tree_c_a], 'P. americana':[tree_c_p]}
+
+#tree = {'Tree Species': ['G. robusta', 'A. indica', 'P. americana'], 'Carbon (ton)': [tree_c_g, tree_c_a, tree_c_p]}
 tree_df = pd.DataFrame(data = tree)
-tree_df = tree_df.set_index('Tree Species')
+#tree_df = tree_df.set_index('Tree Species')
 
 with col2:
     st.subheader('Agroforestry', divider='grey')
