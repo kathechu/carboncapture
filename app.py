@@ -365,7 +365,7 @@ with col2:
     st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
     st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
     st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
-    st.bar_chart(tree_df, color=["#fd0", "#f0f", "#04f"])
+    st.bar_chart(tree_df)
     st.caption("Agroforestry Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
 ########################################### Biochar
@@ -421,7 +421,7 @@ g_shell_c = g_shell_r * g_shell_a * g_shell_b * g_shell_fc * kg_to_ton
 
 biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
 
-biochar = {'Maize Straw': [m_straw_c], 'Maize Cob': [m_cob_c], 'Rice Husk': [r_husk_c], 'Rice Straw':[r_straw_c] 'Sorghum Straw': [s_straw_c], 'Groundnut Shell':[g_shell_c]}
+biochar = {'Maize Straw': [m_straw_c], 'Maize Cob': [m_cob_c], 'Rice Husk': [r_husk_c], 'Rice Straw':[r_straw_c], 'Sorghum Straw': [s_straw_c], 'Groundnut Shell':[g_shell_c]}
 
 #biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell'],
            #'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
