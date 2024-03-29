@@ -14,14 +14,13 @@ st.set_page_config(
     layout="wide"
 )
 
-# import folium
-# from streamlit_folium import st_folium
-
 import requests
 import json
 import pandas as pd
 import math
 import datetime
+
+################ STREAMLIT FORMATTING #####################################################################################################################################################
 
 st.title('Carbon Capture Cube Calculator')
 
@@ -33,6 +32,9 @@ st.markdown('The [GitHub repository](https://github.com/kathechu/carboncapture) 
 
 col1, col2 = st.columns([1,3])
 
+################ STREAMLIT INPUTS ########################################################################################################################
+
+
 with col1:
     st.header('Insert Variables', divider='grey')
     st.markdown('Variables of interest for the baseline carbon stock assessment is the coordinates of a farm and its area.')
@@ -41,6 +43,8 @@ with col1:
     lon_input = st.text_input('Insert a longitude')
 
 point = []
+
+############### LAT/LON INPUTS ########################################################################################################################
 
 with col1:
     if lat_input:
@@ -53,11 +57,7 @@ with col1:
     if not lat_input:
       st.warning("Please fill out required fields.")
 
-# m = folium.Map(location = point, zoom_start = 16)
-# folium.Marker(point, popup = "Location of Interest").add_to(m)
-
-# st_data = st_folium(m, width = 725)
-# st.caption("Location of Interest")
+############### AREA INPUTS ########################################################################################################################
 
 with col1:
     area_input = st.number_input('Insert area in hectares')
@@ -65,7 +65,9 @@ with col1:
         area = area_input
     if not area_input:
       st.warning("Please fill out required fields.")
-    
+
+############### DATE INPUTS ########################################################################################################################
+
 with col1:
     start_input = st.date_input("Start Date", datetime.date(2022, 7, 31))
 if start_input:
@@ -80,10 +82,12 @@ if end_input:
 if not end_input:
   st.warning("Please fill out required fields.")
 
+############### AGROFORESTRY INPUTS ##############################################################################################################
+
 with col1:
     st.markdown('Variables of interest for agroforestry carbon inputs are the species, number, and DBH of tree.')
 
-# G.robusta
+############### G.robusta ########################################################################################################################
 with col1:
     tree_num_g_input = st.number_input('Insert number of G. robusta trees')
 if tree_num_g_input:
@@ -98,7 +102,7 @@ if tree_dbh_g_input:
 if not tree_dbh_g_input:
   tree_dbh_g = 1
 
-# A.indica
+############### A.indica ########################################################################################################################
 with col1:
     tree_num_a_input = st.number_input('Insert number of A. indica trees')
 if tree_num_a_input:
@@ -113,7 +117,7 @@ if tree_dbh_a_input:
 if not tree_dbh_a_input:
   tree_dbh_a = 1 #set equal to 1 to avoid math domain error
 
-# P.americana
+############### P.americana ########################################################################################################################
 with col1:
     tree_num_p_input = st.number_input('Insert number of P. americana trees')
 if tree_num_p_input:
@@ -128,10 +132,12 @@ if tree_dbh_p_input:
 if not tree_dbh_p_input:
   tree_dbh_p = 1
 
+############### BIOCHAR INPUTS ########################################################################################################################
+
 with col1:
     st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.')
 
-# maize straw
+############### maize straw ########################################################################################################################
 with col1:
     m_straw_r_input = st.number_input('Insert kg of maize straw')
 if m_straw_r_input:
@@ -139,7 +145,7 @@ if m_straw_r_input:
 if not m_straw_r_input:
   m_straw_r = 0
 
-# maize cob
+############### maize cob ########################################################################################################################
 with col1:
     m_cob_r_input = st.number_input('Insert kg of maize cob')
 if m_cob_r_input:
@@ -147,7 +153,7 @@ if m_cob_r_input:
 if not m_cob_r_input:
   m_cob_r = 0
 
-# rice husk
+############### rice husk ########################################################################################################################
 with col1:
     r_husk_r_input = st.number_input('Insert kg of rice husk')
 if r_husk_r_input:
@@ -155,7 +161,7 @@ if r_husk_r_input:
 if not r_husk_r_input:
   r_husk_r = 0
 
-# rice straw
+############### rice straw ########################################################################################################################
 with col1:
     r_straw_r_input = st.number_input('Insert kg of rice straw')
 if r_straw_r_input:
@@ -163,7 +169,7 @@ if r_straw_r_input:
 if not r_straw_r_input:
   r_straw_r = 0
 
-# sorghum
+############### sorghum ########################################################################################################################
 with col1:
     s_straw_r_input = st.number_input('Insert kg of sorghum straw')
 if s_straw_r_input:
@@ -171,7 +177,7 @@ if s_straw_r_input:
 if not s_straw_r_input:
   s_straw_r = 0
 
-# groundnut
+############### groundnut ########################################################################################################################
 with col1:
     g_shell_r_input = st.number_input('Insert kg of groundnut shell')
 if g_shell_r_input:
@@ -179,13 +185,9 @@ if g_shell_r_input:
 if not g_shell_r_input:
   g_shell_r = 0
 
-################################ WAPOR
+#################### WAPOR API ########################################################################################################################
 
 path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
-
-# MODIFIABLE VARIABLES
-#start_date="2022-07-31"
-#end_date="2023-07-31"
 
 crs="EPSG:4326" #coordinate reference system
 cube_code="L1_NPP_D" #Dekadal NPP
@@ -238,6 +240,8 @@ df=pd.DataFrame(results['items'],columns=results['header'])
 aoi = {'lat': [point[0]], 'lon':[point[1]]}
 aoi_df = pd.DataFrame(data = aoi)
 
+#################### STREAMLIT FORMATTING FOR OUTPUTS ################################################################################
+
 with col2:
     st.header('Output', divider='grey')
     #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
@@ -256,7 +260,7 @@ abvg_carbon = mean_npp * (10000/907185) * area *365
 with col2:
     st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
 
-###################################### iSDA
+###################################### iSDA API ###############################################################################################################################################
 
 # Set location
 lat = point[0]
@@ -265,7 +269,7 @@ lon = point[1]
 with col2:
     st.subheader('Soil Organic Carbon - iSDA', divider='grey')
 
-# Properties for 0-20 cm
+##################### Properties for 0-20 cm ###############################################################################################################################################
 ## Bulk Density
 iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4&lat={lat}&lon={lon}&property=bulk_density&depth=0-20"
 iSDA_resp = requests.get(iSDAurl).json()
@@ -289,7 +293,7 @@ with col2:
     st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
     st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
 
-# Properties for 20-50 cm
+##################### Properties for 20-50 cm ###############################################################################################################################################
 
 ## Bulk Density
 iSDAurl = f"https://api.isda-africa.com/v1/soilproperty?key=AIzaSyCruMPt43aekqITCooCNWGombhbcor3cf4&lat={lat}&lon={lon}&property=bulk_density&depth=20-50"
@@ -334,26 +338,26 @@ with col2:
     st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
 
 
-########################################### Agroforestry
+########################################### AGROFORESTRY CALCULATIONS #################################################################################################################################
 
-# conversion values
+############################################ conversion values ######################################################################################
 conv_c = 0.48
 kg_to_ton = 1/907.18
 
-# g. robusta
+############################################ g. robusta ######################################################################################
 tree_c_g = tree_num_g * 1.811 * math.pow(tree_dbh_g, 1.658) * conv_c * kg_to_ton
 
-# a. indica
+############################################ a. indica ######################################################################################
 tree_c_a = tree_num_a * math.exp(-0.4568 + 1.6733 * math.log(tree_dbh_a)) * conv_c * kg_to_ton
 
-# p. americana
+############################################ p. americana ######################################################################################
 tree_c_p = tree_num_p * 0.0638 * math.pow(tree_dbh_p, 2.5435) * conv_c * kg_to_ton
 
-# agroforestry totals
+############################################ agroforestry totals ######################################################################################
 
 tree_tot = tree_c_g + tree_c_a + tree_c_p
 
-# agroforestry dataframe
+############################################ agroforestry dataframe ######################################################################################
 
 #tree = {'G. robusta': [tree_c_g], 'A. indica': [tree_c_a], 'P. americana':[tree_c_p]}
 
@@ -369,9 +373,10 @@ with col2:
     st.bar_chart(tree_df)
     st.caption("Agroforestry Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
-########################################### Biochar
 
-# maize straw
+########################################### BIOCHAR CALCULATIONS #################################################################################################################################
+
+############################################ maize straw #################################################################################################################################
 
 m_straw_a = 0.39 # availability
 m_straw_b = 0.3254 # biochar
@@ -379,7 +384,7 @@ m_straw_fc = 0.5993 # fixed carbon
 
 m_straw_c = m_straw_r * m_straw_a * m_straw_b * m_straw_fc * kg_to_ton
 
-# maize cob
+############################################ maize cob #################################################################################################################################
 
 m_cob_a = 1 # availability
 m_cob_b = 0.2605 # biochar
@@ -387,7 +392,7 @@ m_cob_fc = 0.8575 # fixed carbon
 
 m_cob_c = m_cob_r * m_cob_a * m_cob_b * m_cob_fc * kg_to_ton
 
-# rice husks
+############################################ rice husks #################################################################################################################################
 
 r_husk_a = 0.88 # availability
 r_husk_b = 0.4445 # biochar
@@ -395,7 +400,7 @@ r_husk_fc = 0.4696 # fixed carbon
 
 r_husk_c = r_husk_r * r_husk_a * r_husk_b * r_husk_fc * kg_to_ton
 
-# rice straw
+############################################ rice straw #################################################################################################################################
 
 r_straw_a = 0.52 # availability
 r_straw_b = 0.3513 # biochar
@@ -404,7 +409,7 @@ r_straw_fc = 0.4091 # fixed carbon
 r_straw_c = r_straw_r * r_straw_a * r_straw_b * r_straw_fc * kg_to_ton
 
 
-# sorghum
+############################################ sorghum #################################################################################################################################
 
 s_straw_a = 0.6 # availability
 s_straw_b = 0.3690 # biochar
@@ -412,7 +417,7 @@ s_straw_fc = 0.5100 # fixed carbon
 
 s_straw_c = s_straw_r * s_straw_a * s_straw_b * s_straw_fc * kg_to_ton
 
-# groundnut
+############################################ groundnut #################################################################################################################################
 
 g_shell_a = 0.95 # availability
 g_shell_b = 0.3200 # biochar
@@ -431,6 +436,8 @@ biochar_df = biochar_df.set_index('Feedstock')
 
 carbon_input_tot = tree_tot + biochar_tot
 
+########################################### BIOCHAR OUTPUTS ######################################################################################
+
 with col2:
     st.subheader('Biochar', divider='grey')
     st.markdown(f"{m_straw_r} kg of **maize straw** results in {round(m_straw_c, 3)} tons of carbon.")
@@ -445,7 +452,7 @@ with col2:
     st.subheader('Final Carbon Inputs', divider = 'grey')
     st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
 
-# Final inputs
+############################################ FINAL INPUTS #################################################################################################################################
 
 
 final_c = base_c + carbon_input_tot
