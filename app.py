@@ -185,6 +185,14 @@ if g_shell_r_input:
 if not g_shell_r_input:
   g_shell_r = 0
 
+############### p. juliflora ########################################################################################################################
+with col1:
+    p_jul_r_input = st.number_input('Insert kg of mesquite (P. juliflora)')
+if p_jul_r_input:
+    p_jul_r = p_jul_r_input
+if not p_jul_r_input:
+  p_jul_r = 0
+
 #################### WAPOR API ########################################################################################################################
 
 path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
@@ -293,6 +301,12 @@ with col2:
     st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
     st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
 
+0_to_20 = []
+0_to_20.append(bd_20, oc_20,sc_20)
+
+prop = []
+prop.append('Bulk density','Organic carbon','Stone content')
+
 ##################### Properties for 20-50 cm ###############################################################################################################################################
 
 ## Bulk Density
@@ -319,6 +333,17 @@ with col2:
     st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
     st.divider()
 
+20_to_50 = []
+
+20_to_50.append(bd_50, oc_50,sc_50)
+
+isda_data_tab = {'Properties': prop, '0-20 cm Depth': 0_to_20, '20-50 cm Depth": 20_to_50}
+isda_table = pd.DataFrame(data=isda_data_tab)
+isda_table = isda_table.set_index('Properties')
+
+with col2:
+    st.table(isda_table)
+
 # SOC for 0-20 cm
 soc_20 = 0.1 * oc_20 * bd_20 * 20 * (1- (sc_20/100)) * area
 
@@ -336,6 +361,11 @@ with col2:
     st.markdown(f"**Total soil organic carbon stock:** {round(soc_tot, 3)} tons.")
     st.subheader('Final Baseline Carbon Stock', divider='grey')
     st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
+
+
+
+with col2:
+
 
 
 ########################################### AGROFORESTRY CALCULATIONS #################################################################################################################################
@@ -425,7 +455,14 @@ g_shell_fc = 0.7290 # fixed carbon
 
 g_shell_c = g_shell_r * g_shell_a * g_shell_b * g_shell_fc * kg_to_ton
 
-biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
+############################################ p. juliflora #################################################################################################################################
+
+p_jul_c_content = 0.5043
+co2_to_c = 3.664
+
+p_jul_c = p_jul_r * p_jul_c_content * co2_to_c
+
+biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c + p_jul_c
 
 #biochar = {'Maize Straw': [m_straw_c], 'Maize Cob': [m_cob_c], 'Rice Husk': [r_husk_c], 'Rice Straw':[r_straw_c], 'Sorghum Straw': [s_straw_c], 'Groundnut Shell':[g_shell_c]}
 
