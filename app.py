@@ -378,11 +378,17 @@ kg_to_ton = 1/907.18
 ############################################ g. robusta ######################################################################################
 tree_c_g = tree_num_g * 1.811 * math.pow(tree_dbh_g, 1.658) * conv_c * kg_to_ton
 
+tree_age_g = (tree_dbh_g - 3.5232)/2.0099
+
 ############################################ a. indica ######################################################################################
 tree_c_a = tree_num_a * math.exp(-0.4568 + 1.6733 * math.log(tree_dbh_a)) * conv_c * kg_to_ton
 
+tree_age_a = (tree_dbh_a - 2.56)/1.1
+
 ############################################ p. americana ######################################################################################
 tree_c_p = tree_num_p * 0.0638 * math.pow(tree_dbh_p, 2.5435) * conv_c * kg_to_ton
+
+tree_age_p = (tree_dbh_p - 22.06)/0.848
 
 ############################################ agroforestry totals ######################################################################################
 
@@ -398,9 +404,9 @@ tree_df = tree_df.set_index('Tree Species')
 
 with col2:
     st.subheader('Agroforestry', divider='grey')
-    st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} gives a total of {round(tree_c_g, 3)} tons of carbon.")
-    st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} gives a total of {round(tree_c_a, 3)} tons of carbon.")
-    st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} gives a total of {round(tree_c_p, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} and age of {round(tree_age_g,1)} gives a total of {round(tree_c_g, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} and age of {round(tree_age_a,1)} gives a total of {round(tree_c_a, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} and age of {round(tree_age_p,1)} gives a total of {round(tree_c_p, 3)} tons of carbon.")
     st.bar_chart(tree_df)
     st.caption("Agroforestry Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
