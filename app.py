@@ -138,7 +138,7 @@ if not tree_dbh_p_input:
 ############### BIOCHAR INPUTS ########################################################################################################################
 
 with col1:
-    st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.')
+    st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.**NOTE:** When putting in values for mesquite.')
 
 ############### maize straw ########################################################################################################################
 with col1:
@@ -467,7 +467,7 @@ g_shell_c = g_shell_r * g_shell_a * g_shell_b * g_shell_fc * kg_to_ton
 p_jul_c_content = 0.5043
 co2_to_c = 3.664
 
-p_jul_c = p_jul_r * p_jul_c_content * co2_to_c
+p_jul_c = p_jul_r * p_jul_c_content * co2_to_c * (1/1000)
 
 biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c + p_jul_c
 
