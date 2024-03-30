@@ -39,8 +39,8 @@ with col1:
     st.header('Insert Variables', divider='grey')
     st.markdown('Variables of interest for the baseline carbon stock assessment is the coordinates of a farm and its area.')
     st.markdown('**NOTE:** WaPOR 2.1 and iSDAsoil does not have data for all coordinates. For the calculator to work, choose within a latitude range of 10.5 to -18.5 and a longitude range of -16.2 to 50.2.')
-    lat_input = st.text_input('Insert a latitude')
-    lon_input = st.text_input('Insert a longitude')
+    lat_input = st.text_input('Insert a latitude (default: 0.5352)')
+    lon_input = st.text_input('Insert a longitude (default: 36.00826)')
 
 point = []
 
@@ -50,21 +50,24 @@ with col1:
     if lat_input:
         point.append(lat_input)
     if not lat_input:
-      st.warning("Please fill out required fields.")
+        point.append(0.5352)
+        # st.warning("Please fill out required fields.")
     
     if lon_input:
         point.append(lon_input)
-    if not lat_input:
-      st.warning("Please fill out required fields.")
+    if not lon_input:
+        point.append(36.00826)
+        # st.warning("Please fill out required fields.")
 
 ############### AREA INPUTS ########################################################################################################################
 
 with col1:
-    area_input = st.number_input('Insert area in hectares')
+    area_input = st.number_input('Insert area in hectares (default: 0.45 ha)')
     if area_input:
         area = area_input
     if not area_input:
-      st.warning("Please fill out required fields.")
+        area = 0.45
+        # st.warning("Please fill out required fields.")
 
 ############### DATE INPUTS ########################################################################################################################
 
