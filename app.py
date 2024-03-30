@@ -337,7 +337,8 @@ twenty_to_fifty = []
 
 twenty_to_fifty.append(bd_50, oc_50,sc_50)
 
-isda_data_tab = {'Properties': prop, '0-20 cm Depth': zero_to_twenty, '20-50 cm Depth": twenty_to_fifty}
+isda_data_tab = {'Properties': prop, '0-20 cm Depth': zero_to_twenty, '20-50 cm Depth': twenty_to_fifty}
+                 
 isda_table = pd.DataFrame(data=isda_data_tab)
 isda_table = isda_table.set_index('Properties')
 
