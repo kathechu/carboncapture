@@ -301,8 +301,8 @@ with col2:
     st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
     st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
 
-0_to_20 = []
-0_to_20.append(bd_20, oc_20,sc_20)
+zero_to_twenty = []
+zero_to_twenty.append(bd_20, oc_20,sc_20)
 
 prop = []
 prop.append('Bulk density','Organic carbon','Stone content')
@@ -333,11 +333,11 @@ with col2:
     st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
     st.divider()
 
-20_to_50 = []
+twenty_to_fifty = []
 
-20_to_50.append(bd_50, oc_50,sc_50)
+twenty_to_fifty.append(bd_50, oc_50,sc_50)
 
-isda_data_tab = {'Properties': prop, '0-20 cm Depth': 0_to_20, '20-50 cm Depth": 20_to_50}
+isda_data_tab = {'Properties': prop, '0-20 cm Depth': zero_to_twenty, '20-50 cm Depth": twenty_to_fifty}
 isda_table = pd.DataFrame(data=isda_data_tab)
 isda_table = isda_table.set_index('Properties')
 
