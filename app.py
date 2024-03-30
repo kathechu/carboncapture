@@ -301,13 +301,12 @@ with col2:
     st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
     st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
 
-zero_to_twenty = []
-zero_to_twenty.append(bd_20)
-zero_to_twenty.append(oc_20)
-zero_to_twenty.append(sc_20)
+zero_to_twenty = [bd_20,oc_20,sc_20]
+# zero_to_twenty.append(bd_20)
+# zero_to_twenty.append(oc_20)
+# zero_to_twenty.append(sc_20)
 
-prop = []
-prop.append('Bulk density','Organic carbon','Stone content')
+prop = ['Bulk density','Organic carbon','Stone content']
 
 ##################### Properties for 20-50 cm ###############################################################################################################################################
 
@@ -335,11 +334,11 @@ with col2:
     st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
     st.divider()
 
-twenty_to_fifty = []
+twenty_to_fifty = [bd_50,oc_50,sc_50]
 
-twenty_to_fifty.append(bd_50)
-twenty_to_fifty.append(oc_50)
-twenty_to_fifty.append(sc_50)
+# twenty_to_fifty.append(bd_50)
+# twenty_to_fifty.append(oc_50)
+# twenty_to_fifty.append(sc_50)
 
 isda_data_tab = {'Properties': prop, '0-20 cm Depth': zero_to_twenty, '20-50 cm Depth': twenty_to_fifty}
                  
