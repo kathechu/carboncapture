@@ -88,7 +88,7 @@ if not end_input:
 ############### AGROFORESTRY INPUTS ##############################################################################################################
 
 with col1:
-    st.markdown('Variables of interest for agroforestry carbon inputs are the species, number, and DBH of tree.')
+    st.markdown('Variables of interest for agroforestry carbon inputs are the species, number, and DBH of tree. If no DBH is entered, it will default to 1. Any native tree can be substituted in place of the G. robusta values.')
 
 ############### G.robusta ########################################################################################################################
 with col1:
