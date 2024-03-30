@@ -467,8 +467,8 @@ biochar_tot = m_straw_c + m_cob_c + r_husk_c + r_straw_c + s_straw_c + g_shell_c
 
 #biochar = {'Maize Straw': [m_straw_c], 'Maize Cob': [m_cob_c], 'Rice Husk': [r_husk_c], 'Rice Straw':[r_straw_c], 'Sorghum Straw': [s_straw_c], 'Groundnut Shell':[g_shell_c]}
 
-biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell'],
-           'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c]}
+biochar = {'Feedstock': ['Maize Straw', 'Maize Cob', 'Rice Husk', 'Rice Straw', 'Sorghum Straw', 'Groundnut Shell', 'Mesquite'],
+           'Carbon (ton)': [m_straw_c, m_cob_c, r_husk_c, r_straw_c, s_straw_c, g_shell_c, p_jul_c]}
 biochar_df = pd.DataFrame(data = biochar)
 biochar_df = biochar_df.set_index('Feedstock')
 
@@ -484,6 +484,8 @@ with col2:
     st.markdown(f"{r_straw_r} kg of **rice straw** results in {round(r_straw_c, 3)} tons of carbon.")
     st.markdown(f"{s_straw_r} kg of **sorghum straw** results in {round(s_straw_c, 3)} tons of carbon.")
     st.markdown(f"{g_shell_r} kg of **groundnut shells** results in {round(g_shell_c, 3)} tons of carbon.")
+    st.markdown(f"{p_jul_r} kg of **mesquite** results in {round(p_jul_c, 3)} tons of carbon.")
+
     st.bar_chart(biochar_df)
     st.caption("Biochar Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
