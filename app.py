@@ -296,17 +296,11 @@ iSDA_resp = requests.get(iSDAurl).json()
 sc_20 = iSDA_resp["property"]["stone_content"][0]["value"]["value"]
 sc_unit = iSDA_resp["property"]["stone_content"][0]["value"]["unit"]
 
-with col2:
-    st.markdown(f"**Bulk density:** {bd_20} {bd_unit} for 0-20 cm.")
-    st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
-    st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
+# with col2:
+#     st.markdown(f"**Bulk density:** {bd_20} {bd_unit} for 0-20 cm.")
+#     st.markdown(f"**Organic carbon:** {oc_20} {oc_unit} for 0-20 cm.")
+#     st.markdown(f"**Stone content:** {sc_20} {sc_unit} for 0-20 cm.")
 
-zero_to_twenty = [bd_20,oc_20,sc_20]
-# zero_to_twenty.append(bd_20)
-# zero_to_twenty.append(oc_20)
-# zero_to_twenty.append(sc_20)
-
-prop = ['Bulk density','Organic carbon','Stone content']
 
 ##################### Properties for 20-50 cm ###############################################################################################################################################
 
@@ -328,22 +322,13 @@ iSDA_resp = requests.get(iSDAurl).json()
 sc_50 = iSDA_resp["property"]["stone_content"][0]["value"]["value"]
 sc_unit = iSDA_resp["property"]["stone_content"][0]["value"]["unit"]
 
-with col2:
-    st.markdown(f"**Bulk density:** {bd_50} {bd_unit} for 20-50 cm.")
-    st.markdown(f"**Organic carbon:** {oc_50} {oc_unit} for 20-50 cm.")
-    st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
-    st.divider()
+# with col2:
+#     st.markdown(f"**Bulk density:** {bd_50} {bd_unit} for 20-50 cm.")
+#     st.markdown(f"**Organic carbon:** {oc_50} {oc_unit} for 20-50 cm.")
+#     st.markdown(f"**Stone content:** {sc_50} {sc_unit} for 20-50 cm.")
+#     st.divider()
 
-twenty_to_fifty = [bd_50,oc_50,sc_50]
 
-# twenty_to_fifty.append(bd_50)
-# twenty_to_fifty.append(oc_50)
-# twenty_to_fifty.append(sc_50)
-
-isda_data_tab = {'Properties': prop, '0-20 cm Depth': zero_to_twenty, '20-50 cm Depth': twenty_to_fifty}
-                 
-isda_table = pd.DataFrame(data=isda_data_tab)
-isda_table = isda_table.set_index('Properties')
 
 with col2:
     st.table(isda_table)
@@ -354,14 +339,27 @@ soc_20 = 0.1 * oc_20 * bd_20 * 20 * (1- (sc_20/100)) * area
 # SOC for 20-50 cm
 soc_50 = 0.1 * oc_50 * bd_50 * 30 * (1- (sc_50/100)) * area
 
+# Table
+
+zero_to_twenty = [bd_20,oc_20,sc_20,soc_20]
+
+twenty_to_fifty = [bd_50,oc_50,sc_50,soc_50]
+
+prop = ['Bulk density (g/cc)','Organic carbon(g/kg)','Stone content(%)', 'SOC Stock (ton)']
+
+isda_data_tab = {'Properties': prop, '0-20 cm Depth': zero_to_twenty, '20-50 cm Depth': twenty_to_fifty}
+                 
+isda_table = pd.DataFrame(data=isda_data_tab)
+isda_table = isda_table.set_index('Properties')
+
 # Total SOC
 soc_tot = soc_20 + soc_50
 
 base_c = abvg_carbon + soc_tot
 
 with col2:
-    st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
-    st.markdown(f"**Soil organic carbon stock:** {round(soc_50, 3)} tons for 20-50 cm.")
+    # st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
+    # st.markdown(f"**Soil organic carbon stock:** {round(soc_50, 3)} tons for 20-50 cm.")
     st.markdown(f"**Total soil organic carbon stock:** {round(soc_tot, 3)} tons.")
     st.subheader('Final Baseline Carbon Stock', divider='grey')
     st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
