@@ -364,8 +364,8 @@ with col2:
     # st.markdown(f"**Soil organic carbon stock:** {round(soc_50, 3)} tons for 20-50 cm.")
     st.table(isda_table)
     st.markdown(f"**Total soil organic carbon stock:** {round(soc_tot, 3)} tons.")
-    st.subheader('Final Baseline Carbon Stock', divider='grey')
-    st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
+    # st.subheader('Final Baseline Carbon Stock', divider='grey')
+    # st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
 
 
 ########################################### AGROFORESTRY CALCULATIONS #################################################################################################################################
@@ -495,8 +495,8 @@ with col2:
     st.bar_chart(biochar_df)
     st.caption("Biochar Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
-    st.subheader('Final Carbon Inputs', divider = 'grey')
-    st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
+    # st.subheader('Final Carbon Inputs', divider = 'grey')
+    # st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
 
 ############################################ FINAL INPUTS #################################################################################################################################
 
