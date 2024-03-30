@@ -38,7 +38,7 @@ col1, col2 = st.columns([1,3])
 with col1:
     st.header('Insert Variables', divider='grey')
     st.markdown('Variables of interest for the baseline carbon stock assessment is the coordinates of a farm and its area.')
-    st.markdown('**NOTE:** WaPOR 2.1 and iSDAsoil does not have data for all coordinates. For the calculator to work, choose within a latitude range of 10.5 to -18.5 and a longitude range of -16.2 to 50.2.')
+    st.markdown('**NOTE:** WaPOR 2.1 and iSDAsoil does not have data for all coordinates. For the calculator to work, choose within a latitude and a longitude within Sub-Saharan Africa.')
     lat_input = st.text_input('Insert a latitude (default: 0.5352)')
     lon_input = st.text_input('Insert a longitude (default: 36.00826)')
 
@@ -404,9 +404,9 @@ tree_df = tree_df.set_index('Tree Species')
 
 with col2:
     st.subheader('Agroforestry', divider='grey')
-    st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} and age of {round(tree_age_g,1)} gives a total of {round(tree_c_g, 3)} tons of carbon.")
-    st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} and age of {round(tree_age_a,1)} gives a total of {round(tree_c_a, 3)} tons of carbon.")
-    st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} and age of {round(tree_age_p,1)} gives a total of {round(tree_c_p, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_g} **G. robusta trees**, with a DBH of {tree_dbh_g} and age of {round(tree_age_g,1)} years gives a total of {round(tree_c_g, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_a} **A. indica trees**, with a DBH of {tree_dbh_a} and age of {round(tree_age_a,1)} years gives a total of {round(tree_c_a, 3)} tons of carbon.")
+    st.markdown(f"{tree_num_p} **P. americana trees**, with a DBH of {tree_dbh_p} and age of {round(tree_age_p,1)} years gives a total of {round(tree_c_p, 3)} tons of carbon.")
     st.bar_chart(tree_df)
     st.caption("Agroforestry Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Agroforestry:** {round(tree_tot,3)} tons.")
