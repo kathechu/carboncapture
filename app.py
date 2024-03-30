@@ -330,8 +330,7 @@ sc_unit = iSDA_resp["property"]["stone_content"][0]["value"]["unit"]
 
 
 
-with col2:
-    st.table(isda_table)
+
 
 # SOC for 0-20 cm
 soc_20 = 0.1 * oc_20 * bd_20 * 20 * (1- (sc_20/100)) * area
@@ -360,6 +359,7 @@ base_c = abvg_carbon + soc_tot
 with col2:
     # st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
     # st.markdown(f"**Soil organic carbon stock:** {round(soc_50, 3)} tons for 20-50 cm.")
+    st.table(isda_table)
     st.markdown(f"**Total soil organic carbon stock:** {round(soc_tot, 3)} tons.")
     st.subheader('Final Baseline Carbon Stock', divider='grey')
     st.markdown(f"**Total baseline carbon stock:** {round(base_c, 3)} tons.")
