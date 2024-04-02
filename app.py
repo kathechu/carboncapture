@@ -138,7 +138,7 @@ if not tree_dbh_p_input:
 ############### BIOCHAR INPUTS ########################################################################################################################
 
 with col1:
-    st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.**NOTE:** When putting in values for mesquite.')
+    st.markdown('Variables of interest for biochar carbon inputs are the species and amount of feedstock produced by the farm.')
 
 ############### maize straw ########################################################################################################################
 with col1:
