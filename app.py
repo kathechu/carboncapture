@@ -507,7 +507,7 @@ perc_inc = 100 * ((final_c - base_c)/base_c)
 
 #carbon_tot = {'Carbon Input':[final_c],'Baseline':[base_c]}
 
-carbon_tot = {'col1': ['Baseline', 'Carbon Input'], 'col2': [base_c, final_c]}
+carbon_tot = {'col1': ['Baseline', 'Final Carbon'], 'col2': [base_c, final_c]}
 carbon_df = pd.DataFrame(data = carbon_tot)
 carbon_df = carbon_df.set_index('col1')
 
