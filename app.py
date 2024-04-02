@@ -99,7 +99,7 @@ if not tree_num_g_input:
   tree_num_g = 0
 
 with col1:
-    tree_dbh_g_input = st.number_input('Insert DBH of G. robusta trees')
+    tree_dbh_g_input = st.number_input('Insert DBH (cm) of G. robusta trees')
 if tree_dbh_g_input:
     tree_dbh_g = tree_dbh_g_input
 if not tree_dbh_g_input:
@@ -114,7 +114,7 @@ if not tree_num_a_input:
   tree_num_a = 0
 
 with col1:
-    tree_dbh_a_input = st.number_input('Insert DBH of A. indica trees')
+    tree_dbh_a_input = st.number_input('Insert DBH (cm) of A. indica trees')
 if tree_dbh_a_input:
     tree_dbh_a = tree_dbh_a_input
 if not tree_dbh_a_input:
@@ -129,7 +129,7 @@ if not tree_num_p_input:
   tree_num_p = 0
 
 with col1:
-    tree_dbh_p_input = st.number_input('Insert DBH of P. americana trees')
+    tree_dbh_p_input = st.number_input('Insert DBH (cm) of P. americana trees')
 if tree_dbh_p_input:
     tree_dbh_p = tree_dbh_p_input
 if not tree_dbh_p_input:
