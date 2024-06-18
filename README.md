@@ -6,5 +6,5 @@ App is run through Streamlit Community Cloud.
 
 ## Acknowledgments
 
-* [PlantVillage](https://plantvillage.psu.edu/)
-* [trngbich](https://github.com/trngbich/tutorial_WaPOR_API/tree/master)
+* [PlantVillage](https://plantvillage.psu.edu/), for providing guidance and resources for the research.
+* [trngbich](https://github.com/trngbich/tutorial_WaPOR_API/tree/master), for reference in utilizing WaPOR API with Python.
