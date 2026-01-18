@@ -259,7 +259,7 @@ with col2:
     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
     st.line_chart(df, x="dekad", y="value")
     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
-'''
+
 mean_npp = df['value'].mean()
 with col2:
     st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
@@ -270,7 +270,7 @@ abvg_carbon = mean_npp * (10000/907185) * area *365
 
 with col2:
     st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
-
+'''
 ###################################### iSDA API ###############################################################################################################################################
 
 # Set location
