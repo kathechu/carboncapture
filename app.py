@@ -357,7 +357,7 @@ isda_table = isda_table.set_index('Properties')
 # Total SOC
 soc_tot = soc_20 + soc_50
 
-base_c = abvg_carbon + soc_tot
+# base_c = abvg_carbon + soc_tot
 
 with col2:
     # st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
