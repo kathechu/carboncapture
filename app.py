@@ -197,7 +197,7 @@ if not p_jul_r_input:
   p_jul_r = 0
 
 #################### WAPOR API ########################################################################################################################
-
+'''
 path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
 
 crs="EPSG:4326" #coordinate reference system
@@ -250,7 +250,7 @@ df=pd.DataFrame(results['items'],columns=results['header'])
 
 aoi = {'lat': [point[0]], 'lon':[point[1]]}
 aoi_df = pd.DataFrame(data = aoi)
-
+'''
 #################### STREAMLIT FORMATTING FOR OUTPUTS ################################################################################
 
 with col2:
