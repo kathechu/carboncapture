@@ -197,80 +197,80 @@ if not p_jul_r_input:
   p_jul_r = 0
 
 #################### WAPOR API ########################################################################################################################
-'''
-path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
+# '''
+# path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
 
-crs="EPSG:4326" #coordinate reference system
-cube_code="L1_NPP_D" #Dekadal NPP
-workspace='WAPOR_2'
+# crs="EPSG:4326" #coordinate reference system
+# cube_code="L1_NPP_D" #Dekadal NPP
+# workspace='WAPOR_2'
 
-#get datacube measure
-cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/measures'
-resp=requests.get(cube_url).json()
-measure=resp['response']['items'][0]['code']
-print('MEASURE: ',measure)
+# #get datacube measure
+# cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/measures'
+# resp=requests.get(cube_url).json()
+# measure=resp['response']['items'][0]['code']
+# print('MEASURE: ',measure)
 
-#get datacube time dimension
-cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/dimensions'
-resp=requests.get(cube_url).json()
-items=pd.DataFrame.from_dict(resp['response']['items'])
-dimension=items[items.type=='TIME']['code'].values[0]
-print('DIMENSION: ',dimension)
+# #get datacube time dimension
+# cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/dimensions'
+# resp=requests.get(cube_url).json()
+# items=pd.DataFrame.from_dict(resp['response']['items'])
+# dimension=items[items.type=='TIME']['code'].values[0]
+# print('DIMENSION: ',dimension)
 
-query_pixeltimeseries={
-  "type": "PixelTimeSeries",
-  "params": {
-    "cube": {
-      "code": cube_code,
-      "workspaceCode": workspace,
-      "language": "en"
-    },
-    "dimensions": [
-      {
-        "code": dimension,
-        "range": f"[{start_date},{end_date})"
-      }
-    ],
-    "measures": [
-      measure
-    ],
-    "point": {
-      "crs": crs, #latlon projection
-      "x":point[0],
-        "y":point[1]
-    }
-  }
-}
+# query_pixeltimeseries={
+#   "type": "PixelTimeSeries",
+#   "params": {
+#     "cube": {
+#       "code": cube_code,
+#       "workspaceCode": workspace,
+#       "language": "en"
+#     },
+#     "dimensions": [
+#       {
+#         "code": dimension,
+#         "range": f"[{start_date},{end_date})"
+#       }
+#     ],
+#     "measures": [
+#       measure
+#     ],
+#     "point": {
+#       "crs": crs, #latlon projection
+#       "x":point[0],
+#         "y":point[1]
+#     }
+#   }
+# }
 
-resp_query=requests.post(path_query,json=query_pixeltimeseries)
-resp=resp_query.json()
+# resp_query=requests.post(path_query,json=query_pixeltimeseries)
+# resp=resp_query.json()
 
-results=resp['response']
-df=pd.DataFrame(results['items'],columns=results['header'])
+# results=resp['response']
+# df=pd.DataFrame(results['items'],columns=results['header'])
 
-aoi = {'lat': [point[0]], 'lon':[point[1]]}
-aoi_df = pd.DataFrame(data = aoi)
-'''
+# aoi = {'lat': [point[0]], 'lon':[point[1]]}
+# aoi_df = pd.DataFrame(data = aoi)
+# '''
 #################### STREAMLIT FORMATTING FOR OUTPUTS ################################################################################
-'''
-with col2:
-    st.header('Output', divider='grey')
-    #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
-    st.subheader('Aboveground Carbon - WaPOR', divider='grey')
-    st.line_chart(df, x="dekad", y="value")
-    st.caption("Dekadal NPP Time Series (gC/m^2/day)")
+# '''
+# with col2:
+#     st.header('Output', divider='grey')
+#     #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
+#     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
+#     st.line_chart(df, x="dekad", y="value")
+#     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
 
-mean_npp = df['value'].mean()
-with col2:
-    st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
+# mean_npp = df['value'].mean()
+# with col2:
+#     st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
 
-convert = 10000/907185 #from g to ton, m^2 to ha
+# convert = 10000/907185 #from g to ton, m^2 to ha
 
-abvg_carbon = mean_npp * (10000/907185) * area *365
+# abvg_carbon = mean_npp * (10000/907185) * area *365
 
-with col2:
-    st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
-'''
+# with col2:
+#     st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
+# '''
 ###################################### iSDA API ###############################################################################################################################################
 
 # Set location
