@@ -501,9 +501,9 @@ with col2:
 ############################################ FINAL INPUTS #################################################################################################################################
 
 
-final_c = base_c + carbon_input_tot
+# final_c = base_c + carbon_input_tot
 
-perc_inc = 100 * ((final_c - base_c)/base_c)
+# perc_inc = 100 * ((final_c - base_c)/base_c)
 
 #carbon_tot = {'Carbon Input':[final_c],'Baseline':[base_c]}
 
