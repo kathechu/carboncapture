@@ -197,80 +197,80 @@ if not p_jul_r_input:
   p_jul_r = 0
 
 #################### WAPOR API ########################################################################################################################
-# '''
-# path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
 
-# crs="EPSG:4326" #coordinate reference system
-# cube_code="L1_NPP_D" #Dekadal NPP
-# workspace='WAPOR_2'
+path_query=r'https://io.apps.fao.org/gismgr/api/v1/query/'
 
-# #get datacube measure
-# cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/measures'
-# resp=requests.get(cube_url).json()
-# measure=resp['response']['items'][0]['code']
-# print('MEASURE: ',measure)
+crs="EPSG:4326" #coordinate reference system
+cube_code="L1_NPP_D" #Dekadal NPP
+workspace='WAPOR_2'
 
-# #get datacube time dimension
-# cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/dimensions'
-# resp=requests.get(cube_url).json()
-# items=pd.DataFrame.from_dict(resp['response']['items'])
-# dimension=items[items.type=='TIME']['code'].values[0]
-# print('DIMENSION: ',dimension)
+#get datacube measure
+cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/measures'
+resp=requests.get(cube_url).json()
+measure=resp['response']['items'][0]['code']
+print('MEASURE: ',measure)
 
-# query_pixeltimeseries={
-#   "type": "PixelTimeSeries",
-#   "params": {
-#     "cube": {
-#       "code": cube_code,
-#       "workspaceCode": workspace,
-#       "language": "en"
-#     },
-#     "dimensions": [
-#       {
-#         "code": dimension,
-#         "range": f"[{start_date},{end_date})"
-#       }
-#     ],
-#     "measures": [
-#       measure
-#     ],
-#     "point": {
-#       "crs": crs, #latlon projection
-#       "x":point[0],
-#         "y":point[1]
-#     }
-#   }
-# }
+#get datacube time dimension
+cube_url=f'https://io.apps.fao.org/gismgr/api/v1/catalog/workspaces/{workspace}/cubes/{cube_code}/dimensions'
+resp=requests.get(cube_url).json()
+items=pd.DataFrame.from_dict(resp['response']['items'])
+dimension=items[items.type=='TIME']['code'].values[0]
+print('DIMENSION: ',dimension)
 
-# resp_query=requests.post(path_query,json=query_pixeltimeseries)
-# resp=resp_query.json()
+query_pixeltimeseries={
+  "type": "PixelTimeSeries",
+  "params": {
+    "cube": {
+      "code": cube_code,
+      "workspaceCode": workspace,
+      "language": "en"
+    },
+    "dimensions": [
+      {
+        "code": dimension,
+        "range": f"[{start_date},{end_date})"
+      }
+    ],
+    "measures": [
+      measure
+    ],
+    "point": {
+      "crs": crs, #latlon projection
+      "x":point[0],
+        "y":point[1]
+    }
+  }
+}
 
-# results=resp['response']
-# df=pd.DataFrame(results['items'],columns=results['header'])
+resp_query=requests.post(path_query,json=query_pixeltimeseries)
+resp=resp_query.json()
 
-# aoi = {'lat': [point[0]], 'lon':[point[1]]}
-# aoi_df = pd.DataFrame(data = aoi)
-# '''
+results=resp['response']
+df=pd.DataFrame(results['items'],columns=results['header'])
+
+aoi = {'lat': [point[0]], 'lon':[point[1]]}
+aoi_df = pd.DataFrame(data = aoi)
+
 #################### STREAMLIT FORMATTING FOR OUTPUTS ################################################################################
-# '''
-# with col2:
-#     st.header('Output', divider='grey')
-#     #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
-#     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
-#     st.line_chart(df, x="dekad", y="value")
-#     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
 
-# mean_npp = df['value'].mean()
-# with col2:
-#     st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
+with col2:
+    st.header('Output', divider='grey')
+    #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
+    st.subheader('Aboveground Carbon - WaPOR', divider='grey')
+    st.line_chart(df, x="dekad", y="value")
+    st.caption("Dekadal NPP Time Series (gC/m^2/day)")
 
-# convert = 10000/907185 #from g to ton, m^2 to ha
+mean_npp = df['value'].mean()
+with col2:
+    st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
 
-# abvg_carbon = mean_npp * (10000/907185) * area *365
+convert = 10000/907185 #from g to ton, m^2 to ha
 
-# with col2:
-#     st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
-# '''
+abvg_carbon = mean_npp * (10000/907185) * area *365
+
+with col2:
+    st.markdown(f"The **aboveground carbon** is {round(abvg_carbon,3)} tons.")
+
 ###################################### iSDA API ###############################################################################################################################################
 
 # Set location
@@ -357,7 +357,7 @@ isda_table = isda_table.set_index('Properties')
 # Total SOC
 soc_tot = soc_20 + soc_50
 
-# base_c = abvg_carbon + soc_tot
+base_c = abvg_carbon + soc_tot
 
 with col2:
     # st.markdown(f"**Soil organic carbon stock:** {round(soc_20, 3)} tons for 0-20 cm.")
@@ -495,30 +495,30 @@ with col2:
     st.bar_chart(biochar_df)
     st.caption("Biochar Carbon Inputs (ton)")
     st.markdown(f"**Total Carbon from Biochar:** {round(biochar_tot,3)} tons.")
-    # st.subheader('Final Carbon Inputs', divider = 'grey')
-    # st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
+    st.subheader('Final Carbon Inputs', divider = 'grey')
+    st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
 
 ############################################ FINAL INPUTS #################################################################################################################################
 
 
-# final_c = base_c + carbon_input_tot
+final_c = base_c + carbon_input_tot
 
-# perc_inc = 100 * ((final_c - base_c)/base_c)
+perc_inc = 100 * ((final_c - base_c)/base_c)
 
-#carbon_tot = {'Carbon Input':[final_c],'Baseline':[base_c]}
+carbon_tot = {'Carbon Input':[final_c],'Baseline':[base_c]}
 
-# carbon_tot = {'col1': ['Baseline', 'Final Carbon'], 'col2': [base_c, final_c]}
-# carbon_df = pd.DataFrame(data = carbon_tot)
-# carbon_df = carbon_df.set_index('col1')
+carbon_tot = {'col1': ['Baseline', 'Final Carbon'], 'col2': [base_c, final_c]}
+carbon_df = pd.DataFrame(data = carbon_tot)
+carbon_df = carbon_df.set_index('col1')
 
-# st.divider()
-# st.header('Summary' , divider='grey')
+st.divider()
+st.header('Summary' , divider='grey')
 
-# st.bar_chart(carbon_df)
-# st.caption("Baseline Carbon vs. Final Carbon Total")
+st.bar_chart(carbon_df)
+st.caption("Baseline Carbon vs. Final Carbon Total")
 
-# st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
-# st.markdown(f"**Total Baseline Carbon Stock:** {round(base_c, 3)} tons.")
+st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
+st.markdown(f"**Total Baseline Carbon Stock:** {round(base_c, 3)} tons.")
 
-# st.markdown(f"**Final carbon total** is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
+st.markdown(f"**Final carbon total** is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
 
