@@ -507,18 +507,18 @@ with col2:
 
 #carbon_tot = {'Carbon Input':[final_c],'Baseline':[base_c]}
 
-carbon_tot = {'col1': ['Baseline', 'Final Carbon'], 'col2': [base_c, final_c]}
-carbon_df = pd.DataFrame(data = carbon_tot)
-carbon_df = carbon_df.set_index('col1')
+# carbon_tot = {'col1': ['Baseline', 'Final Carbon'], 'col2': [base_c, final_c]}
+# carbon_df = pd.DataFrame(data = carbon_tot)
+# carbon_df = carbon_df.set_index('col1')
 
-st.divider()
-st.header('Summary' , divider='grey')
+# st.divider()
+# st.header('Summary' , divider='grey')
 
-st.bar_chart(carbon_df)
-st.caption("Baseline Carbon vs. Final Carbon Total")
+# st.bar_chart(carbon_df)
+# st.caption("Baseline Carbon vs. Final Carbon Total")
 
-st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
-st.markdown(f"**Total Baseline Carbon Stock:** {round(base_c, 3)} tons.")
+# st.markdown(f"**Total Carbon Inputs:** {round(carbon_input_tot,3)} tons.")
+# st.markdown(f"**Total Baseline Carbon Stock:** {round(base_c, 3)} tons.")
 
-st.markdown(f"**Final carbon total** is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
+# st.markdown(f"**Final carbon total** is {round(final_c,3)} tons, a {round(perc_inc, 1)} % increase at location: {point[0]} degrees latitude, {point[1]} degrees longitude.")
 
