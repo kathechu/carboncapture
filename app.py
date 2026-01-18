@@ -252,14 +252,14 @@ aoi = {'lat': [point[0]], 'lon':[point[1]]}
 aoi_df = pd.DataFrame(data = aoi)
 '''
 #################### STREAMLIT FORMATTING FOR OUTPUTS ################################################################################
-
+'''
 with col2:
     st.header('Output', divider='grey')
     #st.map(aoi_df, latitude = 'lon', longitude = 'lon')
     st.subheader('Aboveground Carbon - WaPOR', divider='grey')
     st.line_chart(df, x="dekad", y="value")
     st.caption("Dekadal NPP Time Series (gC/m^2/day)")
-
+'''
 mean_npp = df['value'].mean()
 with col2:
     st.markdown(f"The **average NPP value** is {round(mean_npp,3)} gC/m^2/day.")
